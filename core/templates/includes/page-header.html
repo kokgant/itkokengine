@@ -1,0 +1,632 @@
+<div class="page-wrapper pl-5 pr-5">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+<h1 id="main_text" class="text-center mt-4">TMSYSTEM</h1>
+
+<div class="container-fluid" id="iframex">
+    <iframe  style="width: 100%;" title="tms_bolsas" height="900" src="https://app.powerbi.com/reportEmbed?reportId=c4cc4594-127f-429d-a87d-763b722da543&autoAuth=true&ctid=838d3820-f0f5-4555-8356-4317555b36fd&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXdlc3QtZXVyb3BlLWUtcHJpbWFyeS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+</div>
+<div class="row justify-content-center mt-4 " style="display:none;" id="tmsystem_socios">
+	<div class="col-md-4">
+		<div id="card_dash_socios" class="card border-bottom shadow border-info cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Dashboard</h2>
+                        <h6 class="text-info">Datos Socios</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-info display-6"><i class="ti-bar-chart"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="col-md-4">
+		<div id="card_facturacion_socios" class="card border-bottom shadow border-orange cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Facturación</h2>
+                        <h6 class="text-orange">Facturación Socios</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-orange display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div id="card_supervision_socios" class="card border-bottom shadow border-green cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Supervisión</h2>
+                        <h6 class="text-green">Supervisión Socios</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-green display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="row justify-content-center mt-4" style="display:none;" id="tmsystem_general">
+	<div class="col-md-4"> 
+		<div id="card_dash_externas" class="card border-bottom shadow border-info cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Dashboard</h2>
+                        <h6 class="text-info">Datos Externas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-info display-6"><i class="ti-bar-chart"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div id="card_facturacion_externas" class="card border-bottom shadow border-danger cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Facturación</h2>
+                        <h6 class="text-danger">Facturación Externas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-danger display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div id="card_supervision_externas" class="card border-bottom shadow border-green cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Supervisión</h2>
+                        <h6 class="text-green">Supervisión Externas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-green display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div id="stacked-bar" class="mt-4" style="display: none;"></div>
+<div class="row justify-content-center mt-4" style="display:none;" id="grupohuertas_facturacion">
+	<div class="col-md-4"> 
+		<div id="card_dash_gh" class="card border-bottom shadow border-info cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Dashboard</h2>
+                        <h6 class="text-info">Datos Grupo Huertas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-info display-6"><i class="ti-bar-chart"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div class="card border-bottom shadow border-danger cursor">
+            <div class="card-body">
+                <div id="card_facturacion_gh"  class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Facturación</h2>
+                        <h6 class="text-danger">Facturación Grupo Huertas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-danger display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div class="card border-bottom shadow border-green cursor">
+            <div class="card-body">
+                <div id="card_supervision_gh" class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Supervisión</h2>
+                        <h6 class="text-green">Supervisión Grupo Huertas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-green display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="row justify-content-center mt-4" style="display:none;" id="configuracion_general">
+	<div class="col-md-4">
+		<div class="card border-bottom shadow border-info cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Carga bolsas</h2>
+                        <h6 class="text-info">Carga bolsas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-info display-6"><i class="ti-bar-chart"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="col-md-4">
+		<div class="card border-bottom shadow border-orange cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Carga socios</h2>
+                        <h6 class="text-orange">Carga socios</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-orange display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-6">
+		<div class="card border-bottom shadow border-orange cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>Carga externas</h2>
+                        <h6 class="text-primary">Carga externas</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-primary display-6"><i class="ti-stats-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="row justify-content-center mt-4" style="display:none;" id="configuracion_grupohuertas">
+	
+    <div class="col-md-4">
+		<div id="card_general" class="card border-bottom shadow border-dark-primary cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>GENERAL</h2>
+                        <h6 style="color:#6352ce;">GENERAL</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="display-6" style="color: #6352ce;"><i class="ti-time"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col-md-4">
+		<div class="card border-bottom shadow border-green cursor">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <h2>API</h2>
+                        <h6 style="color:rgb(20, 224, 122)">API</h6>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="display-6" style="color:rgb(20, 224, 122)"><i class="ti-book"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div id="content_dash_bolsas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-info">DASHBOARD BOLSAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_facturacion_bolsas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-orange text-info">FACTURACIÓN BOLSAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_supervision_bolsas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-green">SUPERVISIÓN BOLSAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content_dash_socios" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-info">DASHBOARD SOCIOS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_facturacion_socios" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-orange text-info">FACTURACIÓN SOCIOS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_supervision_socios" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-green">SUPERVISIÓN SOCIOS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content_dash_externas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-info">DASHBOARD EXTERNAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_facturacion_externas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-orange text-info">FACTURACIÓN EXTERNAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_supervision_externas" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-green">SUPERVISIÓN EXTERNAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content_dash_gh" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-info">DASHBOARD GRUPO HUERTAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content_facturacion_gh" class="card-group justify-content-center" style="display: none;">
+    <!-- Column -->
+    <div class="col-md-12 col-lg-10 col-xl-8 col-12">
+    <div class="card border-bottom shadow border-info">
+        
+      <div class="card-body text-center">
+                    <div class="pb-3">
+                        <h3 class="pb-3">Elige la fecha desde la que quiere ver datos</h3>
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <div>
+                                            <input type="date" id="date_time" value="2021-01-01">
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </div>
+                                    
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn mr-2" id="send_simulation">Simular facturación</button>
+                                    <button class="btn mr-2" id="to_excel">Sacar excel</button>
+                                </div>
+                                
+                            </div>
+                            <div class="col-7 ">
+                                <div class="row justify-content-center">
+                                    <div class="col-6">
+                                        <div>
+                                            <input type="date" id="date_time2" value="2021-01-01">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row  justify-content-center">
+                                    <div class="d-flex">
+                                        <button class="btn mr-2" id="send_date">Ver datos</button>
+                                        <button class="btn mr-2" id="send_post">Cargar datos nuevos</button>
+                                        <button class="btn bg-danger text-white" id="send_delete">Eliminar datos</button>
+                                       </div>
+                                </div>
+                                
+                              
+                           
+                            </div>
+                            <div class="row col-12 justify-content-center mt-3 ">
+                                
+                                <h3 id="info-text"></h3>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <div>
+                        
+                       
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-12">
+        <div class="dashboard_table" id="dash">
+          
+        </div>
+        <div class="justify-content-center" id="spinner-div" style="display:none">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+             
+            </div>
+            
+          </div>
+        <div class="justify-content-center" id="msj" style="display:none">
+            <div class="text-green" style="font-size: 1.4em;">Ha generado correctamente los datos. Para verlos pinche en "VER DATOS".</div>
+
+        </div>
+        <div class="justify-content-center" id="msj2" style="display:none">
+            <div class="text-green" style="font-size: 1.4em;">Ya hay datos generados para esta fecha. Para verlos pinche en "VER DATOS".</div>
+
+        </div> 
+        <div class="justify-content-center" id="msj3" style="display:none">
+            <div class="text-green" style="font-size: 1.4em;">Se han eliminado correctamente los datos.</div>
+
+        </div>     
+    </div>
+</div>
+<div id="content_supervision_gh" class="card-group" style="display: none;">
+    <!-- Column -->
+    <div class="card">
+        <div class="card-body text-center">
+            <h4 class="text-center text-green">SUPERVISIÓN GRUPO HUERTAS</h4>
+            <h2>1200</h2>
+            <div class="row p-t-10 p-b-10">
+                <!-- Column -->
+                <div class="col text-center align-self-center">
+                    <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><i class="display-6 mdi mdi-account-circle"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-up text-success"></i> <br> 12056</h4>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4 class="font-medium m-b-0"><i class="ti-angle-down text-danger"></i> <br> 145</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--BOTONES CON ACCIONES-->
+<div id="panelcontrol" style="display: none;">
+<div class="row justify-content-center">
+<div class="col-3 text-center">
+    <div class="card-panel">
+      <h2 class="text-green">Grupo Huertas</h2>
+    </div>
+    <div class="card-panel">
+      <h5>Agentes</h5>
+      <a href="{% url 'grupohuertas:agentes' %}" class="btn w-100">Agentes</a>
+    </div>
+    <div class="card-panel">
+      <h5>Interacciones</h5>
+      <a href="{% url 'grupohuertas:interacciones' %}" class="btn w-100"
+        >Interacciones</a
+      >
+    </div>
+    <div class="card-panel">
+      <h5>Contactos</h5>
+      <a href="{% url 'grupohuertas:contactos' %}" class="btn w-100">Contactos</a>
+    </div>
+    <div class="card-panel">
+      <h5>Ddis</h5>
+      <a href="{% url 'grupohuertas:ddis' %}" class="btn w-100">Ddis</a>
+    </div>
+    <div class="card-panel">
+      <h5>Agent times</h5>
+      <a href="{% url 'grupohuertas:agentimes' %}" class="btn w-100"
+        >Agent times</a
+      >
+    </div>    
+  </div>    
+  <div class="col-3 text-center">
+    <div class="card-panel">
+      <h2 class="text-primary">TMSystem</h2>
+    </div>
+    <div class="card-panel">
+      <h5>Carga datos de campañas</h5>
+      <a href="#">Ejecutar</a>
+      {% comment %} <a href="{% url 'itkokengine:campaigns' %}" class="btn w-100">Ejecutar</a> {% endcomment %}
+    </div>
+    <div class="card-panel">
+      <h5>Carga datos de campañas por día.</h5>
+      {% comment %} <a href="{% url 'itkokengine:datacampaigns' %}" class="btn w-100"
+        >Ejecutar</a> {% endcomment %}
+        <a href="#">Ejecutar</a>        
+    </div>
+    {% comment %} <div class="card-panel">
+         <h5>Carga datos de llamadas</h5>
+      <a href="{% url 'itkokengine:interactions' %}" class="btn w-100"
+        >Ejecutar</a>
+    </div>{% endcomment %}
+    </div>
+</div>
+</div>
+</div>

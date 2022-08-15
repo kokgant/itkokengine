@@ -1,0 +1,65 @@
+{% extends 'layouts/base.html' %} {% block title %} Intranet - TmSystem 
+{%endblock title %} {% block content %}
+
+<div style="display: none;">
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-3">
+      <div class="card-panel">
+        <h2>Grupo Huertas</h2>
+      </div>
+      <div class="card-panel">
+        <h5>agentes</h5>
+        <a href="{% url 'grupohuertas:agentes' %}" class="btn">Agentes</a>
+      </div>
+      <div class="card-panel">
+        <h5>Interacciones</h5>
+        <a href="{% url 'grupohuertas:interacciones' %}" class="btn"
+          >Interacciones</a
+        >
+      </div>
+      <div class="card-panel">
+        <h5>Contactos</h5>
+        <a href="{% url 'grupohuertas:contactos' %}" class="btn">Contactos</a>
+      </div>
+      <div class="card-panel">
+        <h5>Ddis</h5>
+        <a href="{% url 'grupohuertas:ddis' %}" class="btn">Ddis</a>
+      </div>
+      <div class="card-panel">
+        <h5>Agent times</h5>
+        <a href="{% url 'grupohuertas:agentimes' %}" class="btn"
+          >Agent times</a
+        >
+      </div>    
+    </div>    
+    <div class="col-3">
+      <div class="card-panel">
+        <h2>TmSystem</h2>
+      </div>
+      <div class="card-panel">
+        <h5>Carga datos de campañas</h5>
+        <a href="#" class="btn">Ejecutar</a>
+      </div>
+      <div class="card-panel">
+        <h5>Carga datos de campañas por día.</h5>
+        <a href="#" class="btn"
+          >Ejecutar</a>
+      </div>
+      {% comment %} <div class="card-panel">
+        <h5>Carga datos de llamadas</h5>
+        <a href="{% url 'interactions' %}" class="btn"
+          >Ejecutar</a>
+      </div> {% endcomment %}
+
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% endblock content %}

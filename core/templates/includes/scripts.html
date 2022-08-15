@@ -1,0 +1,608 @@
+{% load static %}
+<!-- Scripts -->
+<script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="{% static 'assets/libs/popper.js/dist/umd/popper.min.js'%}"></script>
+<script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- apps -->
+<script src="{% static 'js/app.min.js' %}"></script>
+<script src="{% static 'js/app.init.js' %}"></script>
+<script src="{% static 'js/app-style-switcher.js' %}"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="{% static 'assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/sparkline/sparkline.js' %}"></script>
+<!--Wave Effects -->
+<script src="{% static 'js/waves.js' %}"></script>
+<!--Menu sidebar -->
+<script src="{% static 'js/sidebarmenu.js' %}"></script>
+<!--Custom JavaScript -->
+<script src="{% static 'js/custom.min.js' %}"></script>
+<!--Personal javascript-->
+<script src="{% static 'js/main.js' %}"></script>
+<!--Dashboard js-->
+<script src="{% static 'assets/libs/echarts/dist/echarts-en.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/c3/d3.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/c3/c3.min.js' %}"></script>
+<script src="{% static 'js/pages/c3-chart/bar-pie/c3-stacked-bar.js' %}"></script>
+<script src= "{% static 'assets/extra-libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'dist/js/pages/datatable/datatable-basic.init.js' %}"></script>
+<script>
+
+    let btn_date = document.getElementById('send_date');
+    let btn_post = document.getElementById('send_post');
+    let btn_delete = document.getElementById('send_delete');
+    let btn_simulation = document.getElementById('send_simulation');
+    let to_excel = document.getElementById('to_excel');
+    let info_text = document.getElementById('info-text');
+    const dashboard_table_div = document.querySelector("div.dashboard_table"); //Encuentra el div del dashboard_table
+    let tableHeaders = ["Campaña","Horas logado","Tarificación fija","Tarificación móvil","Alquiler ddis"];
+    let tableHeadersSimulation = ["Campaña","Horas logado","Precio total","Tarificación fija","Precio total","Tarificación móvil","Precio total","Alquiler ddis","Precio total","Totalidad"];
+
+
+    const createDashboardTable = () => {
+      
+      while (dashboard_table_div.firstChild) dashboard_table_div.removeChild(dashboard_table_div.firstChild); //Elimina los hijos del div dashboard_table si hay alguno
+      
+      let dashboardTable = document.createElement('table'); //crea la tabla
+      dashboardTable.className = 'dashboardTable';
+     
+      dashboardTable.style.background =' #fff';
+      
+      let dashboardTableHead = document.createElement('thead'); //crea el head con los elementos th
+      dashboardTableHead.className = 'dashboardTableHead';
+      
+      let dashboardTableHeaderRow = document.createElement('tr'); //crea las filas que van a contener los headers
+      dashboardTableHeaderRow.className = 'dashboardTableHeaderRow';
+
+      //Iteramos sobres los strings en el tableHeaders y hacemos append a las celdas del header row
+
+      tableHeaders.forEach(header => {
+        let tableHeader = document.createElement('th'); //crea la celda del header por cada iteracion
+        tableHeader.innerText = header;
+        dashboardTableHeaderRow.append(tableHeader);
+      })
+
+      dashboardTableHead.append(dashboardTableHeaderRow);
+      dashboardTable.append(dashboardTableHead);
+
+      let dashboardTableBody = document.createElement('tbody');
+      dashboardTableBody.className = 'dashboardTable-Body';
+      dashboardTable.append(dashboardTableBody);
+
+      dashboard_table_div.append(dashboardTable) //añadimos la tabla al div 
+
+        
+    }
+
+    
+    const createDashboardTableSimulation = () => {
+      
+      while (dashboard_table_div.firstChild) dashboard_table_div.removeChild(dashboard_table_div.firstChild); //Elimina los hijos del div dashboard_table si hay alguno
+      
+      let dashboardTable = document.createElement('table'); //crea la tabla
+      dashboardTable.className = 'dashboardTable';
+      dashboardTable.setAttribute('id','mytable');
+      dashboardTable.style.background =' #fff';
+      
+      
+      let dashboardTableHead = document.createElement('thead'); //crea el head con los elementos th
+      dashboardTableHead.className = 'dashboardTableHead';
+      
+      let dashboardTableHeaderRow = document.createElement('tr'); //crea las filas que van a contener los headers
+      dashboardTableHeaderRow.className = 'dashboardTableHeaderRow';
+      
+
+      //Iteramos sobres los strings en el tableHeaders y hacemos append a las celdas del header row
+
+      tableHeadersSimulation.forEach(header => {
+        let tableHeader = document.createElement('th'); //crea la celda del header por cada iteracion
+        tableHeader.innerText = header;
+        if(header === 'Totalidad'){
+          tableHeader.style.background =' #f1f1f1';
+          tableHeader.style.fontWeight ='900';
+        }
+          
+        
+       
+        dashboardTableHeaderRow.append(tableHeader);
+      })
+
+      dashboardTableHead.append(dashboardTableHeaderRow);
+      dashboardTable.append(dashboardTableHead);
+
+      let dashboardTableBody = document.createElement('tbody');
+      dashboardTableBody.className = 'dashboardTable-Body';
+      dashboardTable.append(dashboardTableBody);
+
+      dashboard_table_div.append(dashboardTable) //añadimos la tabla al div 
+
+        
+    }
+    const appendDataSimulation = (name,singleData,singleData1,singleData2,singleData3,singleData4,singleData5,singleData6,singleData7,singleData8) => {
+      const dashboardTable = document.querySelector('.dashboardTable'); //encuentra la tabla que creamos anteriormente
+     
+      let dashboardTableBodyRow = document.createElement('tr');
+      dashboardTableBodyRow.className = 'dashboardTableBodyRow';
+      let camp_name = document.createElement('td');
+      let prod_0 = document.createElement('td');
+      let prod_1 = document.createElement('td');
+      let prod_2 = document.createElement('td');
+      let prod_3 = document.createElement('td');
+      let prod_4 = document.createElement('td');
+      let prod_5 = document.createElement('td');
+      let prod_6 = document.createElement('td');
+      let prod_7 = document.createElement('td');
+      let prod_8 = document.createElement('td');
+  
+
+    
+      //let prod_3 = document.createElement('td');
+      camp_name.innerText = name;
+      prod_0.innerText = singleData;
+      prod_1.innerText = singleData1;
+      prod_2.innerText = singleData2;
+      prod_3.innerText = singleData3;
+      prod_4.innerText = singleData4;
+      prod_5.innerText = singleData5;
+      prod_6.innerText = singleData6;
+      prod_7.innerText = singleData7;
+      prod_8.innerText = singleData8;
+      prod_8.style.background =' #f1f1f1';
+      prod_8.style.fontWeight ='900';
+
+      
+
+
+
+
+
+      
+      //prod_3.innerText = singleData3;
+
+      dashboardTableBodyRow.append(camp_name,prod_0,prod_1,prod_2,prod_3,prod_4,prod_5,prod_6,prod_7,prod_8);
+
+      dashboardTable.append(dashboardTableBodyRow);
+
+    }
+
+    const appendData = (name,singleData,singleData1,singleData2,singleData3) => {
+      const dashboardTable = document.querySelector('.dashboardTable'); //encuentra la tabla que creamos anteriormente
+     
+      let dashboardTableBodyRow = document.createElement('tr');
+      dashboardTableBodyRow.className = 'dashboardTableBodyRow';
+      let camp_name = document.createElement('td');
+      let prod_0 = document.createElement('td');
+      let prod_1 = document.createElement('td');
+      let prod_2 = document.createElement('td');
+      let prod_3 = document.createElement('td');
+
+      //let prod_3 = document.createElement('td');
+      camp_name.innerText = name;
+      prod_0.innerText = singleData;
+      prod_1.innerText = singleData1;
+      prod_2.innerText = singleData2;
+      prod_3.innerText = singleData3;
+      //prod_3.innerText = singleData3;
+
+      dashboardTableBodyRow.append(camp_name,prod_0,prod_1,prod_2,prod_3);
+
+      dashboardTable.append(dashboardTableBodyRow);
+
+    }
+    const appendDataSum = (name,singleData,singleData1,singleData2,singleData3) => {
+      const dashboardTable = document.querySelector('.dashboardTable'); //encuentra la tabla que creamos anteriormente
+     
+      let dashboardTableBodyRow = document.createElement('tr');
+      dashboardTableBodyRow.className = 'dashboardTableBodyRowSum';
+      let camp_name = document.createElement('td');
+      let prod_0 = document.createElement('td');
+      let prod_1 = document.createElement('td');
+      let prod_2 = document.createElement('td');
+      let prod_3 = document.createElement('td');
+
+      //let prod_3 = document.createElement('td');
+      camp_name.innerText = name;
+      camp_name.style.background =' #f1f1f1';
+      camp_name.style.fontWeight ='900';
+      prod_0.innerText = singleData;
+      prod_0.style.background ='#f1f1f1';
+      prod_0.style.fontWeight ='900';
+      prod_1.innerText = singleData1;
+      prod_1.style.background =' #f1f1f1';
+      prod_1.style.fontWeight ='900'
+      prod_2.innerText = singleData2;
+      prod_2.style.background =' #f1f1f1';
+      prod_2.style.fontWeight ='900'
+      prod_3.innerText = singleData3;
+      prod_3.style.background =' #f1f1f1';
+      prod_3.style.fontWeight ='900'
+ 
+
+      //prod_3.innerText = singleData3;
+
+      dashboardTableBodyRow.append(camp_name,prod_0,prod_1,prod_2,prod_3);
+
+      dashboardTable.append(dashboardTableBodyRow);
+
+    }
+    const appendDataSumSimulation = (name,singleData,singleData1,singleData2,singleData3,singleData4,singleData5,singleData6,singleData7,singleData8) => {
+      const dashboardTable = document.querySelector('.dashboardTable'); //encuentra la tabla que creamos anteriormente
+     
+      let dashboardTableBodyRow = document.createElement('tr');
+      dashboardTableBodyRow.className = 'dashboardTableBodyRowSum';
+      let camp_name = document.createElement('td');
+      let prod_0 = document.createElement('td');
+      let prod_1 = document.createElement('td');
+      let prod_2 = document.createElement('td');
+      let prod_3 = document.createElement('td');
+      let prod_4 = document.createElement('td');
+      let prod_5 = document.createElement('td');
+      let prod_6 = document.createElement('td');
+      let prod_7 = document.createElement('td');
+      let prod_8 = document.createElement('td');
+
+
+      //let prod_3 = document.createElement('td');
+      camp_name.innerText = name;
+      camp_name.style.background =' #f1f1f1';
+      camp_name.style.fontWeight ='900';
+      prod_0.innerText = singleData;
+      prod_0.style.background ='#f1f1f1';
+      prod_0.style.fontWeight ='900';
+      prod_1.innerText = singleData1;
+      prod_1.style.background =' #f1f1f1';
+      prod_1.style.fontWeight ='900'
+      prod_2.innerText = singleData2;
+      prod_2.style.background =' #f1f1f1';
+      prod_2.style.fontWeight ='900'
+      prod_3.innerText = singleData3;
+      prod_3.style.background =' #f1f1f1';
+      prod_3.style.fontWeight ='900'
+      prod_4.innerText = singleData4;
+      prod_4.style.background =' #f1f1f1';
+      prod_4.style.fontWeight ='900'
+      prod_5.innerText = singleData5;
+      prod_5.style.background =' #f1f1f1';
+      prod_5.style.fontWeight ='900'
+      prod_6.innerText = singleData6;
+      prod_6.style.background =' #f1f1f1';
+      prod_6.style.fontWeight ='900'
+      prod_7.innerText = singleData7;
+      prod_7.style.background =' #f1f1f1';
+      prod_7.style.fontWeight ='900'
+      prod_8.innerText = singleData8;
+      prod_8.style.background =' #f1f1f1';
+      prod_8.style.fontWeight ='900'
+ 
+
+      //prod_3.innerText = singleData3;
+
+      dashboardTableBodyRow.append(camp_name,prod_0,prod_1,prod_2,prod_3,prod_4,prod_5,prod_6,prod_7,prod_8);
+
+      dashboardTable.append(dashboardTableBodyRow);
+
+    }
+   const dataGet =(month,year)=>{
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Token 1979270d223cb12d0564b9d075e6cac55782aeed");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "year": 2021,
+      "month": 11
+    });
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    let dash = document.getElementById('dash');
+    let msj = document.getElementById('msj');
+    msj.classList.remove('d-flex');
+    msj2.classList.remove('d-flex');
+    msj3.classList.remove('d-flex');
+    dash.classList.remove("d-none");
+    fetch("https://data.tmsystem.es/gh/api/v1/getrawdata/?year="+year+"&month="+month+"", requestOptions)
+      .then(response => response.json()
+      )
+      .then(function(result){
+
+          createDashboardTable();
+          info_text.innerText = `Está viendo datos desde el 01/${month}/${year} hasta el último día de ese mes`
+
+        //console.log(result[0].lineas[0].quantity);
+        //variables
+        let num_total_objetos = result.length;
+        
+        //for que recorre el numero total de objetos que son el numero de filas total que tendremos
+        let prod_0=0,prod_1=1,prod_2=2,prod_3=3,sumProd_0=0,sumProd_1=0,sumProd_2=0,sumProd_3=0;
+        for (let i = 0; i < num_total_objetos; i++) {
+          
+          let campaign_name = result[i].campaign;
+          try{
+            prod_0 = parseFloat(result[i].lineas[0].quantity)
+            sumProd_0 += prod_0
+            prod_1 = parseFloat(result[i].lineas[1].quantity)
+            sumProd_1 += prod_1
+            prod_2 = parseFloat(result[i].lineas[2].quantity)
+            sumProd_2 += prod_2
+            prod_3 = parseFloat(result[i].lineas[3].quantity)
+            
+            sumProd_3 += prod_3
+          }catch(e){
+            
+          }
+          appendData(campaign_name,prod_0.toFixed(2),prod_1.toFixed(2),prod_2.toFixed(2),prod_3.toFixed(2));
+        }
+        appendDataSum("Total",sumProd_0.toFixed(2),sumProd_1.toFixed(2),sumProd_2.toFixed(2),sumProd_3.toFixed(2));
+      
+        
+       
+      })
+      .catch(error =>console.log(error));
+   }
+   
+   const dataPost =(month,year)=>{
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Token 1979270d223cb12d0564b9d075e6cac55782aeed");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "year": 2021,
+      "month": 10
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    let spinner = document.getElementById('spinner-div');
+    let dash = document.getElementById('dash');
+    let msj = document.getElementById('msj');
+    let msj2 = document.getElementById('msj2');
+    dash.classList.add("d-none");
+    msj.classList.remove('d-flex')
+    msj2.classList.remove('d-flex')
+    msj3.classList.remove('d-flex');
+    spinner.classList.add('d-flex');
+
+    fetch("https://data.tmsystem.es/gh/api/v1/getrawdata/?year="+year+"&month="+month+"", requestOptions)
+      .then(response => response.json()
+      )
+      .then(function(result){
+        
+        spinner.classList.remove('d-flex');
+
+        if(result.status === true){
+          //ha generado los datos correctamente
+          info_text.innerText = `Ha generado datos desde el 01/${month}/${year} hasta el último día de ese mes`
+
+        }else{
+          //ya tiene los datos cargados
+          info_text.innerText = `Ya hay datos cargados para la fecha 01/${month}/${year}. Para verlos pinche en VER DATOS.`
+        }
+       
+      
+      })
+      .catch(error =>console.log(error));
+   }
+   
+   //delete 
+   const dataDelete =(month,year)=>{
+    let msj3 = document.getElementById('msj3');
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Token 1979270d223cb12d0564b9d075e6cac55782aeed");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "year": 2021,
+      "month": 10
+    });
+    
+    var requestOptions = {
+      method: 'DELETE',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    let spinner = document.getElementById('spinner-div');
+    let dash = document.getElementById('dash');
+    let msj = document.getElementById('msj');
+    let msj2 = document.getElementById('msj2');
+    dash.classList.add("d-none");
+    msj.classList.remove('d-flex')
+    msj2.classList.remove('d-flex')
+    spinner.classList.add('d-flex');
+
+    fetch("https://data.tmsystem.es/gh/api/v1/getrawdata/?year="+year+"&month="+month+"", requestOptions)
+      .then(response => response.json()
+      )
+      .then(function(result){
+        
+        spinner.classList.remove('d-flex');
+        msj3.classList.add('d-flex');
+
+      
+       
+      
+      })
+      .catch(error =>console.log(error));
+   }
+
+   const dataSimulation =(day,month,year)=>{
+    let spinner = document.getElementById('spinner-div');
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Token 1979270d223cb12d0564b9d075e6cac55782aeed");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    let dash = document.getElementById('dash');
+    let msj = document.getElementById('msj');
+    msj.classList.remove('d-flex');
+    msj2.classList.remove('d-flex');
+    msj3.classList.remove('d-flex');
+    dash.classList.add("d-none");
+    spinner.classList.add("d-flex");
+    fetch("https://data.tmsystem.es/gh/api/v1/invoicedatashot/?year="+year+"&month="+month+"&day="+day, requestOptions)
+      .then(response => response.json()
+      )
+      .then(function(result){
+          spinner.classList.remove("d-flex");
+          dash.classList.remove("d-none");
+          createDashboardTableSimulation();
+          info_text.innerText = `Está viendo datos simulados desde el 01/${month}/${year} hasta el último día de ese mes`
+        
+        //console.log(result[0].lineas[0].quantity);
+        //variables
+        let num_total_objetos = result.length;
+        
+        //for que recorre el numero total de objetos que son el numero de filas total que tendremos
+        let prod_0=0,prod_1=1,prod_2=2,prod_3=3,prod_4=0,prod_5=0,prod_6=0,prod_7=0,prod_8=0,sumProd_0=0,sumProd_1=0,sumProd_2=0,sumProd_3=0,sumProd_4=0,sumProd_5=0,sumProd_6=0,sumProd_7=0,sumProd_8=0;
+        let precio_0=0,precio_1=0,precio_2=0,precio_3=0;
+        for (let i = 0; i < num_total_objetos; i++) {
+          
+          let campaign_name = result[i].campaign;
+          try{
+            //horas logadas * precio
+            prod_0 = parseFloat(result[i].lineas[0].quantity)
+            precio_0 = parseFloat(result[i].lineas[0].price)
+            prod_1 = prod_0 * precio_0;
+            
+            // tarificacion fija * precio
+            prod_2 = parseFloat(result[i].lineas[1].quantity)
+            precio_1 = parseFloat(result[i].lineas[1].price)
+            prod_3 = prod_2 * precio_1;
+            // tarificacion movil * precio
+            prod_4 = parseFloat(result[i].lineas[2].quantity)
+            precio_2 = parseFloat(result[i].lineas[2].price)
+            prod_5 = prod_4 * precio_2
+            //alquiler ddis * precio
+
+            prod_6 = parseFloat(result[i].lineas[3].quantity)
+            precio_3 = parseFloat(result[i].lineas[3].price)
+            prod_7 = prod_6 * precio_3;
+
+            prod_8 = prod_1 + prod_3 + prod_5 + prod_7;
+            sumProd_0 += prod_0;
+            sumProd_1 += prod_1;
+            sumProd_2 += prod_2;
+            sumProd_3 += prod_3;
+            sumProd_4 += prod_4;
+            sumProd_5 += prod_5;
+            sumProd_6 += prod_6;
+            sumProd_7 += prod_7;
+            sumProd_8 += prod_8;
+          }catch(e){
+            
+          }
+          appendDataSimulation(campaign_name,prod_0.toFixed(2),prod_1.toFixed(2),prod_2.toFixed(2),prod_3.toFixed(2),prod_4.toFixed(2),prod_5.toFixed(2),prod_6.toFixed(2),prod_7.toFixed(2),prod_8.toFixed(2));
+        }
+        appendDataSumSimulation("Total",sumProd_0.toFixed(2),sumProd_1.toFixed(2),sumProd_2.toFixed(2),sumProd_3.toFixed(2),sumProd_4.toFixed(2),sumProd_5.toFixed(2),sumProd_6.toFixed(2),sumProd_7.toFixed(2),sumProd_8.toFixed(2));
+ 
+      })
+      .catch(error =>console.log(error));
+   }
+
+
+
+
+
+  
+  btn_date.addEventListener('click',function(){
+
+  let date = new Date(document.getElementById('date_time2').value);
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  dataGet(month,year);
+
+   })
+
+
+   btn_post.addEventListener('click',function(){
+ 
+   let date = new Date(document.getElementById('date_time2').value);
+   let month = date.getMonth() + 1;
+   let year = date.getFullYear();
+    
+    dataPost(month,year);
+
+   })
+   btn_delete.addEventListener('click',function(){
+     const pw = 'tmsystem';
+     let input_pw = prompt("Va a eliminar datos sensibles, para ello introduzca la contraseña");
+
+    if(pw === input_pw && input_pw!=="" && input_pw !== null){
+      let date = new Date(document.getElementById('date_time2').value);
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+       
+       dataDelete(month,year);
+    }else{
+        alert("Contraseña incorrecta")
+    }
+
+    })
+
+    btn_simulation.addEventListener('click',function(){
+      let date = new Date(document.getElementById('date_time').value);
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let day = date.getDate();
+
+      dataSimulation(day,month,year);
+
+     });
+
+     function exportTableToExcel(tableID, filename = ''){
+      
+      let downloadLink;
+      let dataType = 'application/vnd.ms-excel';
+      let tableSelect = document.getElementById(tableID);
+      if(tableSelect === null){
+        info_text.innerText = `Para generar el excel hay que simular los datos antes.`
+      }
+      let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+      
+     
+     
+      // Specify file name
+      filename = filename?filename+'.xls':'excel_data.xls';
+      
+      // Create download link element
+      downloadLink = document.createElement("a");
+      
+      document.body.appendChild(downloadLink);
+      
+      if(navigator.msSaveOrOpenBlob){
+          var blob = new Blob(['\ufeff', tableHTML], {
+              type: dataType
+          });
+          navigator.msSaveOrOpenBlob( blob, filename);
+      }else{
+          // Create a link to the file
+          downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+      
+          // Setting the file name
+          downloadLink.download = filename;
+          
+          //triggering the function
+          downloadLink.click();
+      }
+  }
+
+  to_excel.addEventListener('click',function(){
+    exportTableToExcel('mytable');
+  })
+
+     
+    
+
+  </script>
