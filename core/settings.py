@@ -84,17 +84,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 
 REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": [
-#         #"rest_framework.authentication.SessionAuthentication",
-#         #"rest_framework.authentication.TokenAuthentication",
-#     ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
 #         # "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
 #         # "rest_framework.permissions.DjangoModelPermissions",
     ],
 #     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-#     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+
 }
 
 # Config django log viewer

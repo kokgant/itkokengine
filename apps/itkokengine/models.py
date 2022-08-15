@@ -49,4 +49,4 @@ class Client(models.Model):
         verbose_name_plural = _("Clients")
 
     def __str__(self):
-        return '{} {} {} (#{}/#{})'.format(_('Client'), self.name, self.vat, self.pk)
+        return '{} {} {} (#{})'.format(_('Client'), self.name, self.vat, self.pk)
